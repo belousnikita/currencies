@@ -1,0 +1,38 @@
+{
+  "name": "currencies",
+  "version": "1.0.0",
+  "description": "Currency converter app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "predeploy": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chern0us/currencies.git"
+  },
+  "keywords": [
+    "currency",
+    "converter",
+    "react"
+  ],
+  "author": "chern0us",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chern0us/currencies/issues"
+  },
+  "homepage": "https://github.com/chern0us/currencies#readme",
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "^2.1.8"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
