@@ -1,0 +1,39 @@
+@import 'colors.scss';
+
+$mobileWidth: 50%;
+$desktopWidth: 25%;
+$round-radius: 1em;
+$tablet: 768px;
+.block { 
+    grid-area: Block; 
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom-left-radius: $round-radius;
+    border-bottom-right-radius: $round-radius;
+    margin-top: $round-radius;
+    background-color: $vista-blue;
+    @include shadow();
+    &::before {
+        content: "";
+        width: calc(50% - 10px);
+        @media only screen and (min-width: $tablet) {
+            width: calc(25% - 10px);
+        }
+	    height: $round-radius;
+	    display: block;
+	    position: absolute;
+        margin-top: -$round-radius;
+        background-color: $vista-blue;
+    }
+    &.left {
+    border-top-right-radius: $round-radius;
+   
+    }
+    &.right {
+        border-top-left-radius: $round-radius;
+        &::before {
+            left: $mobileWidth;
+        }
+    }
+    
+}
