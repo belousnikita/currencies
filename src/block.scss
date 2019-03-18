@@ -4,7 +4,50 @@ $mobileWidth: 50%;
 $desktopWidth: 25%;
 $round-radius: 1em;
 $tablet: 768px;
+
+%inner-round-corner {
+    position: relative;
+    overflow: hidden;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      border-radius: 50%;
+    }
+  }
+
+  @mixin inner-round-corner(
+  $size: 20px,
+  $direction: 'top-left',
+  $color: skyblue
+) {
+  @extend %inner-round-corner;
+  width: $size;
+  height: $size;
+
+  &::after {
+    border: $size/2 solid $color;
+    
+    @if $direction == 'top-left' {
+      top: -50%;
+      left: -50%;
+    } @else if $direction == 'top-right' {
+      top: -50%;
+      right: -50%;
+    } @else if $direction == 'bottom-right' {
+      bottom: -50%;
+      right: -50%;
+    } @else {
+      bottom: -50%;
+      left: -50%;
+    }
+  }
+}
+
 .block { 
+
     grid-area: Block; 
     margin-left: 10px;
     margin-right: 10px;
@@ -12,6 +55,7 @@ $tablet: 768px;
     border-bottom-right-radius: $round-radius;
     margin-top: $round-radius;
     background-color: $vista-blue;
+    
     @include shadow();
     &::before {
         content: "";
@@ -25,6 +69,7 @@ $tablet: 768px;
         margin-top: -$round-radius;
         background-color: $vista-blue;
     }
+        
     &.left {
     border-top-right-radius: $round-radius;
    
@@ -36,4 +81,17 @@ $tablet: 768px;
         }
     }
     
+}
+.corner {
+  &.left {
+    left: 50%;
+    @include inner-round-corner($round-radius, "bottom-left", $vista-blue);
+  }
+  &.right {
+    left: 50%;
+    margin-left: -$round-radius;
+    @include inner-round-corner($round-radius, "bottom-right", $vista-blue);
+  }
+  bottom: $round-radius;
+   
 }
