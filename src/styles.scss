@@ -1,11 +1,18 @@
 @import 'colors.scss';
 @import 'button.scss';
+@import 'block.scss';
 
-$middle-tablet: 600px;
+@mixin shadow {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+$tablet: 768px;
 
 $ffamily: Arial, Helvetica, sans-serif;
 $big: 1.5rem;
-$medium: 1rem;
+$medium: 1.2rem;
 
 
 html, body {
@@ -14,25 +21,30 @@ html, body {
     height: 100%;
 }
 body {
-    background-color: $medium-sky-blue;
+    background-color: $background-color;
     color: white;
     font-family: $ffamily;
+;
 }
 
 .grid-container {
     display: grid;
+
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.5fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: "Head Head Head Head" ". Block Block ." ". Block Block .";
-    @media only screen and (max-width: $middle-tablet) {
+    @media only screen and (max-width: $tablet) {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 0.5fr 1.5fr 1fr;
         grid-template-areas: "Head Head" "Block Block" ". .";
     }
+    
 }
       
-.Block { grid-area: Block; }
+i{
+    margin: 0.2em;
+}
 
 .Head {
     background-color: $black-coral;
@@ -43,9 +55,16 @@ body {
     grid-template-rows: 1fr;
     grid-template-areas: ". Currencies Converter .";
     grid-area: Head;
-    @media only screen and (max-width: $middle-tablet) {
+    padding-left: 18px;
+    padding-right: 18px;
+    @include shadow();
+    @media only screen and (max-width: $tablet) {
+        padding-left: 10px;
+        padding-right: 10px;
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
         grid-template-areas: "Currencies Converter";
+        font-size: $medium;
     }
 }
       
