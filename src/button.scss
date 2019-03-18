@@ -15,10 +15,17 @@
     height: 100%;
     vertical-align: middle;
     user-select: none;
-    &:hover {
+    &:hover:not(.active) {
         background-color:$hovered-coral;
-        @include shadow();
+    }
+    &focus:not(.active) {
+        background-color: white;
+    }
+    &.active {
+        background-color:$vista-blue;
+        cursor: auto;
     }
     cursor: pointer;
     @include transition();
+    z-index: 10;
 }
