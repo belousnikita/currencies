@@ -1,0 +1,42 @@
+.currency {
+    margin: 20px;
+    margin-left: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.currency_value {
+    margin-left: 30px;
+    display: flex;
+    // &::before {
+    //     display: block;
+	//     position: absolute;
+    //     margin-top: -$round-radius;
+    //     background-color: $vista-blue;
+    // }
+}
+.currency_value_buy {
+    // padding-left: 10px;
+        padding-right: 10px;
+        &::before {
+        content: "BUY";
+        font-size: 10px;
+        text-align: center;
+        
+        display: block;
+	    position: absolute;
+        margin-top: -$round-radius * 1.5;
+    }
+}
+.currency_value_sell{
+    padding-left: 10px;
+    // padding-right: 10px;
+    &::before {
+        content: "SELL";
+        font-size: 10px;
+        text-align: center;
+        
+        display: block;
+	    position: absolute;
+        margin-top: -$round-radius * 1.5;
+    }
+}
