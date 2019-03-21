@@ -23,7 +23,9 @@ const header = (handler, state) => {
         </div>
     </div>
 };
-
+const getProperNumbers = (rate, base = 1) => {
+    return base * rate >= base ? { rate, base } : getProperNumbers(rate * 10, base * 10);
+}
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +36,7 @@ export default class App extends React.Component {
             loaded: false,
             isCurrencies: true,
             isConverter: false,
-            currencies: ["EUR", "USD", "RUB", "GBP", "DKK", "CHF", "PLN", "CAD", "SEK", "KZT", "BGN", "CNY", "HKD", "BRL"]
+            currencies: ["EUR", "USD", "RUB", "GBP", "DKK", "CHF", "PLN", "CAD", "SEK", "KZT", "BGN", "CNY", "HKD", "JPY"]
         }
     }
     selectCurrency(i) {
@@ -80,16 +82,18 @@ export default class App extends React.Component {
                 <div className="currency">Обрані валюти з'являться у конверторі</div>
             </Block>
             {loaded && isCurrencies && currencies.map((c, i) => {
-                if (c)
+                if (c) {
+                    const { rate, base } = getProperNumbers(c.rate);
                     return <Block key={i} left={isCurrencies} right={isConverter} color={c.color} zIndex={currencies.length - i}>
                         <Currency
                             name={c.cc}
                             fullName={c.txt}
-                            buy="12.200000"
-                            sell="12.2123211"
+                            buy={base}
+                            sell={rate.toFixed(5)}
                             active={c.isSelected}
                             onClick={() => this.selectCurrency(i)}></Currency>
                     </Block>
+                }
                 else return null;
             })}
             {loaded && isConverter && currencies.map((c, i) => {
