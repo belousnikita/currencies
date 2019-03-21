@@ -7,7 +7,7 @@
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-between;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -27,6 +27,14 @@
         font-size: large;
     }
 }
+.currency_fullname {
+    font-size: smaller;
+    position: absolute;
+    margin-top: -56px;
+    margin-left: -15px;
+    font-weight: bolder;
+    color: rgba($color: #ffffff, $alpha: 0.4)
+}
 .currency_value {
     margin-left: 30px;
     display: -webkit-box;
@@ -35,25 +43,7 @@
 }
 .currency_value_buy {
         padding-right: 10px;
-        &::before {
-        content: "BUY";
-        font-size: 10px;
-        text-align: center;
-        
-        display: block;
-	    position: absolute;
-        margin-top: -$round-radius;
-    }
 }
 .currency_value_sell{
     padding-left: 10px;
-    &::before {
-        content: "SELL";
-        font-size: 10px;
-        text-align: center;
-        
-        display: block;
-	    position: absolute;
-        margin-top: -$round-radius;
-    }
 }
