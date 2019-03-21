@@ -1,21 +1,39 @@
 .currency {
-    margin: 20px;
+    margin-top: 5px;
+    margin-bottom: 25px;
     margin-left: 30px;
+    margin-right: 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    @media only screen and (max-width: $tablet) {
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+    }
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.currency_name {
+    font-size: x-large;
+    @media only screen and (max-width: $tablet) {
+        font-size: large;
+    }
 }
 .currency_value {
     margin-left: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    // &::before {
-    //     display: block;
-	//     position: absolute;
-    //     margin-top: -$round-radius;
-    //     background-color: $vista-blue;
-    // }
 }
 .currency_value_buy {
-    // padding-left: 10px;
         padding-right: 10px;
         &::before {
         content: "BUY";
@@ -24,12 +42,11 @@
         
         display: block;
 	    position: absolute;
-        margin-top: -$round-radius * 1.5;
+        margin-top: -$round-radius;
     }
 }
 .currency_value_sell{
     padding-left: 10px;
-    // padding-right: 10px;
     &::before {
         content: "SELL";
         font-size: 10px;
@@ -37,6 +54,6 @@
         
         display: block;
 	    position: absolute;
-        margin-top: -$round-radius * 1.5;
+        margin-top: -$round-radius;
     }
 }
