@@ -1,31 +1,80 @@
 @import 'colors.scss';
+@import 'width.scss';
 @mixin transition {
+    -webkit-transition: all ease-in-out 0.5s;
+    -o-transition: all ease-in-out 0.5s;
     transition: all ease-in-out 0.5s;
 }
 @mixin shadow {
     -webkit-box-shadow: 0px 0px 32px -3px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 32px -3px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 32px -3px rgba(0,0,0,0.75);
 }
+@mixin  innerShadow {
+    -webkit-box-shadow: inset 0px 0px 8px 1px rgba(255,255,255,0.67);
+    box-shadow: inset 0px 0px 8px 1px rgba(255,255,255,0.67);
+}
 .button {
+    -webkit-tap-highlight-color: transparent;
+    width: $full / 2;
+    -webkit-appearance: none;
+    font-size: inherit;
+    color: inherit;
+    border: 0;
+    padding: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     background-color: $dark-coral;
     height: 100%;
     vertical-align: middle;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    @media only screen and (min-width: $tablet) {
+        width: 300px;
+    }
     &:hover:not(.active) {
         background-color:$hovered-coral;
     }
-    &focus:not(.active) {
-        background-color: white;
+    &:focus {
+        outline:none !important;
+        @include innerShadow();
     }
     &.active {
-        background-color:$vista-blue;
+        background-color:#4A4DA5;
         cursor: auto;
     }
     cursor: pointer;
     @include transition();
     z-index: 10;
+    &.favorite {
+        padding: 0.8em;
+
+        width: auto;
+        font-size: 1em;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        background-color: rgba($color: #000000, $alpha: 0.1);
+        vertical-align: middle;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        border-radius: 1.2em; 
+        &:hover {
+            background-color: rgba($color: #000000, $alpha: 0.3);
+            color: yellow;
+        }
+    }
 }
