@@ -2,13 +2,13 @@
 @import 'button.scss';
 @import 'block.scss';
 @import 'currency.scss';
+@import 'width.scss';
 @mixin shadow {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 }
 
-$tablet: 768px;
+
 
 $ffamily: Arial, Helvetica, sans-serif;
 $big: 1rem;
@@ -28,16 +28,23 @@ body {
 }
 
 .grid-container {
-    display: grid;
-    // height: calc(100vh - 10px);
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-template-rows: 0.1fr 1fr 1fr;
-    grid-template-areas: "Head Head Head Head" ". Block Block ." ". Block Block .";
+    grid-auto-rows: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    vertical-align: middle;
+
     @media only screen and (max-width: $tablet) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        // grid-template-rows: 0.1fr 1.5fr 1fr;
-        grid-template-areas: "Head Head" "Block Block" ". .";
+
     }
     
 }
@@ -46,26 +53,20 @@ i{
     margin: 0.2em;
 }
 
-.Head {
-    // height: auto;
+.head {
     background-color: $black-coral;
     font-size: $big;
-    display: grid;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     vertical-align: middle;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". Currencies Converter .";
-    grid-area: Head;
     padding-left: 18px;
     padding-right: 18px;
     @include shadow();
     @media only screen and (max-width: $tablet) {
-        padding-left: 10px;
-        padding-right: 10px;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-        grid-template-areas: "Currencies Converter";
-        font-size: $medium;
     }
 }
       
