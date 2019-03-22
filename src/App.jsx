@@ -5,6 +5,7 @@ import Currency from './Currency';
 import Block from './Block';
 import Rainbow from 'rainbowvis.js';
 import './styles/styles.scss';
+import Result from './Result';
 
 const header = (handler, state) => {
     const { isCurrencies, isConverter } = state;
@@ -23,6 +24,14 @@ const header = (handler, state) => {
         </div>
     </div>
 };
+const input = (value, onChange) => {
+    return <form>
+        <label className="input_label">
+            UAH:
+      <input className="input" value={value} type="text" name="UAH" onChange={(e) => onChange(e)} />
+        </label>
+    </form>
+}
 const getProperNumbers = (rate, base = 1) => {
     return base * rate >= base ? { rate, base } : getProperNumbers(rate * 10, base * 10);
 }
@@ -36,8 +45,17 @@ export default class App extends React.Component {
             loaded: false,
             isCurrencies: true,
             isConverter: false,
-            currencies: ["EUR", "USD", "RUB", "GBP", "DKK", "CHF", "PLN", "CAD", "SEK", "KZT", "BGN", "CNY", "HKD", "JPY"]
+            currencies: ["EUR", "USD", "RUB", "GBP", "DKK", "CHF", "PLN", "CAD", "SEK", "KZT", "BGN", "CNY", "HKD", "JPY"],
+            value: ""
         }
+    }
+    inputHandler(event) {
+        function isNumber(val) {
+            return (val >= 0 || val < 0);
+        }
+        const { value } = event.target;
+        if (isNumber(value) || value === '.')
+            this.setState({ value });
     }
     selectCurrency(i) {
         const { currencies } = this.state;
@@ -75,11 +93,12 @@ export default class App extends React.Component {
         }
     }
     render() {
-        const { isCurrencies, isConverter, currencies, loaded } = this.state;
+        const { isCurrencies, isConverter, currencies, loaded, value } = this.state;
         return <div className="grid-container">
             {header(this.selectorHandler.bind(this), this.state)}
             <Block first left={isCurrencies} right={isConverter} color="#4A4DA5" zIndex={currencies.length + 1}>
-                <div className="currency">Обрані валюти з'являться у конверторі</div>
+                {isCurrencies && <div className="currency">Обрані валюти з'являться у конверторі</div>}
+                {isConverter && input(value, this.inputHandler.bind(this))}
             </Block>
             {loaded && isCurrencies && currencies.map((c, i) => {
                 if (c) {
@@ -99,13 +118,11 @@ export default class App extends React.Component {
             {loaded && isConverter && currencies.map((c, i) => {
                 if (c && c.isSelected)
                     return <Block key={i} left={isCurrencies} right={isConverter} color={c.color} zIndex={currencies.length - i}>
-                        <Currency
+                        <Result
                             name={c.cc}
                             fullName={c.txt}
-                            buy="12.200000"
-                            sell="12.2123211"
-                            active={c.isSelected}
-                            onClick={() => this.selectCurrency(i)}></Currency>
+                            result={(parseFloat(value) / c.rate).toFixed(5)}
+                        ></Result>
                     </Block>
                 else return null;
             })}
