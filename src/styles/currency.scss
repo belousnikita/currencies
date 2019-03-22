@@ -20,7 +20,12 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+            &.result {
+                justify-content: space-around;
+            }
+
 }
+
 .currency_name {
     font-size: x-large;
     @media only screen and (max-width: $tablet) {
@@ -33,7 +38,11 @@
     margin-top: -56px;
     margin-left: -15px;
     font-weight: bolder;
-    color: rgba($color: #ffffff, $alpha: 0.4)
+    color: rgba($color: #ffffff, $alpha: 0.4);
+    &.result {
+        margin:0;
+        padding: 0;
+    }
 }
 .currency_value {
     margin-left: 30px;
@@ -46,4 +55,8 @@
 }
 .currency_value_sell{
     padding-left: 10px;
+}
+.currency_result {
+    padding: 10px;
+    justify-self: center;
 }
