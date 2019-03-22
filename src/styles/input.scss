@@ -1,0 +1,16 @@
+.input {
+    width: 90%;
+    margin: 20px;
+    margin-right: 40px;
+    position: relative;
+    display: inline-block;
+    height: 2rem;
+    background-color: rgba($color: #ffffff, $alpha: 0.2);
+    border: white 2px solid;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.5em;
+}
+.input_label {
+    margin-left: 1rem;
+}
